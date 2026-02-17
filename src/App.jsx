@@ -11,6 +11,7 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import Profile from './components/Profile'
 import Messages from './components/Messages'
+import Settings from './components/Settings'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/job-recommender" element={<JobRecommender />} />
                 <Route path="/interview-assistant" element={<InterviewAssistant />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/settings" element={<Settings />} />
               </Routes>
             </Layout>
           } />

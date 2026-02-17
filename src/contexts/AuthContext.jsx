@@ -38,6 +38,14 @@ export const AuthProvider = ({ children }) => {
     setCurrentUser(null)
   }
 
+  const signup = (newUser) => {
+    const users = JSON.parse(localStorage.getItem('careerxai-users') || '[]')
+    users.push(newUser)
+    localStorage.setItem('careerxai-users', JSON.stringify(users))
+    localStorage.setItem('careerxai-currentUser', JSON.stringify(newUser))
+    setCurrentUser(newUser)
+  }
+
   const updateUser = (updatedUser) => {
     localStorage.setItem('careerxai-currentUser', JSON.stringify(updatedUser))
     setCurrentUser(updatedUser)
@@ -47,6 +55,7 @@ export const AuthProvider = ({ children }) => {
     currentUser,
     login,
     logout,
+    signup,
     updateUser,
     loading
   }

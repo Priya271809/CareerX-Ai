@@ -70,122 +70,153 @@ function JobRecommender() {
   }
 
   return (
-    <div className="min-h-screen bg-green-50 py-20">
+    <div className="min-h-screen bg-base-200 py-10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h3 className="text-4xl font-bold text-center text-green-800 mb-6">Job Recommender</h3>
-          <p className="text-xl text-center text-gray-600 mb-12">Find the perfect job matches tailored to your skills and preferences.</p>
+          <h3 className="text-4xl font-bold text-center mb-6">Job Recommender</h3>
+          <p className="text-xl text-center opacity-70 mb-12">Find the perfect job matches tailored to your skills and preferences.</p>
 
           {!showForm ? (
-            <div className="bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/50">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="text-center">
-                  <button
-                    onClick={handleFindJobs}
-                    className="bg-green-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-green-700 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                  >
-                    Find Jobs
-                  </button>
-                </div>
-                <div>
-                  <h4 className="text-2xl font-semibold text-green-800 mb-4">Smart Matching</h4>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Skill-based recommendations</li>
-                    <li className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Location and salary preferences</li>
-                    <li className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Company culture matching</li>
-                    <li className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>Growth opportunity analysis</li>
-                  </ul>
+            <div className="card bg-base-100 shadow-xl">
+              <div className="card-body">
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  <div className="text-center">
+                    <button
+                      onClick={handleFindJobs}
+                      className="btn btn-primary btn-lg"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      Find Jobs
+                    </button>
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-semibold mb-4">Smart Matching</h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-center"><span className="badge badge-primary mr-2">✓</span>Skill-based recommendations</li>
+                      <li className="flex items-center"><span className="badge badge-primary mr-2">✓</span>Location and salary preferences</li>
+                      <li className="flex items-center"><span className="badge badge-primary mr-2">✓</span>Company culture matching</li>
+                      <li className="flex items-center"><span className="badge badge-primary mr-2">✓</span>Growth opportunity analysis</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           ) : (
             <div className="space-y-8">
-              <div className="bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/50">
-                <h4 className="text-2xl font-semibold text-green-800 mb-6 text-center">Tell us about your preferences</h4>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">Skills (comma separated)</label>
-                    <input
-                      type="text"
-                      name="skills"
-                      value={preferences.skills}
-                      onChange={handleInputChange}
-                      placeholder="e.g., React, JavaScript, Node.js"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    />
+              {/* Preferences Form */}
+              <div className="card bg-base-100 shadow-xl">
+                <div className="card-body">
+                  <h4 className="card-title text-2xl justify-center mb-6">Tell us about your preferences</h4>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Skills (comma separated)</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="skills"
+                        value={preferences.skills}
+                        onChange={handleInputChange}
+                        placeholder="e.g., React, JavaScript, Node.js"
+                        className="input input-bordered"
+                      />
+                    </div>
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Preferred Location</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="location"
+                        value={preferences.location}
+                        onChange={handleInputChange}
+                        placeholder="e.g., New York, Remote"
+                        className="input input-bordered"
+                      />
+                    </div>
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Salary Range</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="salary"
+                        value={preferences.salary}
+                        onChange={handleInputChange}
+                        placeholder="e.g., $80k - $120k"
+                        className="input input-bordered"
+                      />
+                    </div>
+                    <div className="form-control">
+                      <label className="label">
+                        <span className="label-text">Job Type</span>
+                      </label>
+                      <select
+                        name="jobType"
+                        value={preferences.jobType}
+                        onChange={handleInputChange}
+                        className="select select-bordered"
+                      >
+                        <option value="full-time">Full-time</option>
+                        <option value="part-time">Part-time</option>
+                        <option value="contract">Contract</option>
+                        <option value="remote">Remote</option>
+                      </select>
+                    </div>
                   </div>
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">Preferred Location</label>
-                    <input
-                      type="text"
-                      name="location"
-                      value={preferences.location}
-                      onChange={handleInputChange}
-                      placeholder="e.g., New York, Remote"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">Salary Range</label>
-                    <input
-                      type="text"
-                      name="salary"
-                      value={preferences.salary}
-                      onChange={handleInputChange}
-                      placeholder="e.g., $80k - $120k"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700 font-medium mb-2">Job Type</label>
-                    <select
-                      name="jobType"
-                      value={preferences.jobType}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  <div className="card-actions justify-center mt-6">
+                    <button
+                      onClick={handleFindJobs}
+                      disabled={isSearching}
+                      className="btn btn-primary btn-lg"
                     >
-                      <option value="full-time">Full-time</option>
-                      <option value="part-time">Part-time</option>
-                      <option value="contract">Contract</option>
-                      <option value="remote">Remote</option>
-                    </select>
+                      {isSearching ? (
+                        <>
+                          <span className="loading loading-spinner"></span>
+                          Searching...
+                        </>
+                      ) : (
+                        <>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          </svg>
+                          Find My Perfect Jobs
+                        </>
+                      )}
+                    </button>
                   </div>
-                </div>
-                <div className="text-center mt-6">
-                  <button
-                    onClick={handleFindJobs}
-                    disabled={isSearching}
-                    className="bg-green-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-green-700 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSearching ? 'Searching...' : 'Find My Perfect Jobs'}
-                  </button>
                 </div>
               </div>
 
+              {/* Search Results */}
               {searchResults.length > 0 && (
-                <div className="bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/50">
-                  <h4 className="text-2xl font-semibold text-green-800 mb-6 text-center">Recommended Jobs</h4>
-                  <div className="space-y-4">
-                    {searchResults.map(job => (
-                      <div key={job.id} className="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-xl border border-green-200/50 hover:shadow-lg transition duration-300">
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <h5 className="text-xl font-semibold text-green-800">{job.title}</h5>
-                            <p className="text-gray-600">{job.company} • {job.location}</p>
-                            <p className="text-gray-600">{job.salary}</p>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-green-600 font-bold text-lg">{job.match} match</div>
-                            <button
-                              onClick={() => handleApply(job.id)}
-                              className="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300 mt-2"
-                            >
-                              Apply Now
-                            </button>
+                <div className="card bg-base-100 shadow-xl">
+                  <div className="card-body">
+                    <h4 className="card-title text-2xl justify-center mb-6">Recommended Jobs</h4>
+                    <div className="space-y-4">
+                      {searchResults.map(job => (
+                        <div key={job.id} className="card bg-base-200 shadow hover:shadow-lg transition duration-300">
+                          <div className="card-body flex flex-row items-center justify-between">
+                            <div>
+                              <h5 className="card-title text-xl">{job.title}</h5>
+                              <p className="opacity-70">{job.company} • {job.location}</p>
+                              <p className="opacity-70">{job.salary}</p>
+                            </div>
+                            <div className="text-right">
+                              <div className="badge badge-lg badge-primary font-bold">{job.match} match</div>
+                              <button
+                                onClick={() => handleApply(job.id)}
+                                className="btn btn-primary mt-3"
+                              >
+                                Apply Now
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
